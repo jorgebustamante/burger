@@ -1,0 +1,61 @@
+<h1>Eat the debt</h1>
+
+<main>
+    <div class="container">
+        {{!-- row for labels, all 4s --}}
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Debts you owe</h3>
+            </div>
+            <div class="col-md-4">
+                <h1>Add a debt!</h1>
+            </div>
+            <div class="col-md-4">
+                <h3>Debts you paid off!</h3>
+            </div>
+        </div>
+        {{!-- row for debts owed, submit field, and paid field --}}
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        You owe
+                    </div>
+                    <div class="card-body">
+                        {{!-- <h5 class="card-title">Title</h5> --}}
+                        {{!-- <p class="card-text"> handlebar inserts here</p> --}}
+                    </div>
+                </div>
+            </div>
+
+        <div class="col-md-4">
+            {{!-- submit debts here --}}
+            <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
+                <button type="submit" class='burgerAvailable'> {{this.burger_name}}</button>
+              </form>
+        </div>
+        <div class="col-md-4">
+              <div class="card">
+                    <div class="card-header">
+                        You paid off
+                    </div>
+                    <div class="card-body">
+                        {{!-- <h5 class="card-title">Title</h5> --}}
+                        {{!-- <p class="card-text"> handlebar inserts here</p> --}}
+                    </div>
+                </div>
+        </div>
+    </div>
+    {{!-- new row for submit button --}}
+    <h2>Add A Burger Option</h2>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/burgers" method="POST">
+      <input type="text" id="name" name="burger_name" placeholder="Uber Delicious Burger">
+      <button type="submit" class="addBurgerButton">Add The Burger</button>
+    </form>
+  </div>
+</div>
+
+</main>
