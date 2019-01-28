@@ -28,34 +28,55 @@
                 </div>
             </div>
 
-        <div class="col-md-4">
-            {{!-- submit debts here --}}
-            <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
-                <button type="submit" class='burgerAvailable'> {{this.burger_name}}</button>
-              </form>
-        </div>
-        <div class="col-md-4">
-              <div class="card">
-                    <div class="card-header">
-                        You paid off
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        {{#each burgers}}
+                        {{#unless this.devoured}}
+                        <div>
+                            <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
+                                <button type="submit" class='burgerAvailable'> {{this.burger_name}}</button>
+                            </form>
+                        </div>
+                        {{/unless}}
+                        {{/each}}
                     </div>
-                    <div class="card-body">
-                        {{!-- <h5 class="card-title">Title</h5> --}}
-                        {{!-- <p class="card-text"> handlebar inserts here</p> --}}
+                    {{!-- <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                You paid off
+                            </div>
+                            <div class="card-body">
+                                {{!-- <h5 class="card-title">Title</h5> --}}
+                                {{!-- <p class="card-text"> handlebar inserts here</p> --}}
+                            </div>
+                        </div>
                     </div>
                 </div>
+</main> --}}
+<div class="col-md-4">
+    {{#each burgers}}
+    {{#if this.devoured}}
+    <div class='burgerEaten'>
+        <div>
+            {{this.burger_name}}
         </div>
     </div>
-    {{!-- new row for submit button --}}
-    <h2>Add A Burger Option</h2>
+    {{/if}}
+    {{/each}}
+</div>
+</div>
+</div>
+</main>
+
+{{!-- new row for submit button --}}
+<h2>Add A Burger Option</h2>
 
 <div class="row">
-  <div class="col-md-12">
-    <form action="/burgers" method="POST">
-      <input type="text" id="name" name="burger_name" placeholder="Uber Delicious Burger">
-      <button type="submit" class="addBurgerButton">Add The Burger</button>
-    </form>
-  </div>
+    <div class="col-md-12">
+        <form action="/burgers" method="POST">
+            <input type="text" id="name" name="burger_name" placeholder="Uber Delicious Burger">
+            <button type="submit" class="addBurgerButton">Add The Burger</button>
+        </form>
+    </div>
 </div>
-
-</main>
