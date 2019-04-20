@@ -1,30 +1,34 @@
-// Generic express server
-var express = require('express');
-var bodyParser = require('body-parser');
-var path = require('path');
-var app = express();
-var PORT = process.env.PORT || 3000;
+const express = require('express')
+const exphbs  = require('express-handlebars');
+var db = require("./models");
+const app = express()
+const PORT = process.env.PORT || 3000
 
-var exphbs = require('express-handlebars');
+// Serve static content for the app from the "public" directory in the application directory.
+app.use(express.static(__dirname + "/public"));
 
-var routes = require('./controllers/burgers_controller.js');
+// Parse application body as JSON
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
 
-app.use('/', routes);
+// Set Handlebars.
+app.engine("handlebars",exphbs({defaultLayout: "main"}))
+app.set("view engine","handlebars")
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
+// connection to api-routes
+require('./routes/burger-api-routes')(app)
+require('./routes/customer-api-routes')(app)
 
-// Expose the public directory to access CSS files
-app.use(express.static(path.join(__dirname, './app/public')));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.text());
-
-// require(path.join(__dirname, './app/routing/apiRoutes'))(app);
-// require(path.join(__dirname, './app/routing/htmlRoutes'))(app);
-
-// Start listening on PORT
-app.listen(PORT, function() {
-  console.log('Friend Finder app is listening on PORT: ' + PORT);
-});
+// Start our server so that it can begin listening to client requests.
+// Log (server-side) when our server has started
+db.sequelize.sync().then(function() {
+    app.listen(PORT, function() {
+      console.log(
+        "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+        PORT,
+        PORT
+      );
+    });
+  });
+  
+  module.exports = app;

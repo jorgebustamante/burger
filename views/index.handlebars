@@ -1,82 +1,55 @@
-<h1>Eat the debt</h1>
+<div class='row'>
+    <div class='col-sm-12 col-md-8 col-lg-6 table-burger'>
+        <div class="card-transparent">
+            <div class="card-body table-card">
+                <h3 class="card-title">Ready to eat da burgers?</h3>
+                <table class="table table-hover table-borderless">
+                    <tbody>
 
-<main>
-    <div class="container">
-        {{!-- row for labels, all 4s --}}
-        <div class="row">
-            <div class="col-md-4">
-                <h3>Debts you owe</h3>
-            </div>
-            <div class="col-md-4">
-                <h1>Add a debt!</h1>
-            </div>
-            <div class="col-md-4">
-                <h3>Debts you paid off!</h3>
-            </div>
-        </div>
-        {{!-- row for debts owed, submit field, and paid field --}}
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">
-                        You owe
-                    </div>
-                    <div class="card-body">
-                        {{!-- <h5 class="card-title">Title</h5> --}}
-                        {{!-- <p class="card-text"> handlebar inserts here</p> --}}
-                    </div>
-                </div>
-            </div>
+                        {{!-- <ul> --}}
+                            {{!-- <h3>Ready to eat da burgers?</h3> --}}
+                            {{#each burger}}
+                            {{#unless devoured}}
+                            {{>burger/burger-partials devour = true}}
+                            {{/unless}}
+                            {{/each}}
+                            {{!-- </ul> --}}
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        {{#each burgers}}
-                        {{#unless this.devoured}}
-                        <div>
-                            <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
-                                <button type="submit" class='burgerAvailable'> {{this.burger_name}}</button>
-                            </form>
-                        </div>
-                        {{/unless}}
-                        {{/each}}
-                    </div>
-                    {{!-- <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header">
-                                You paid off
-                            </div>
-                            <div class="card-body">
-                                {{!-- <h5 class="card-title">Title</h5> --}}
-                                {{!-- <p class="card-text"> handlebar inserts here</p> --}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-</main> --}}
-<div class="col-md-4">
-    {{#each burgers}}
-    {{#if this.devoured}}
-    <div class='burgerEaten'>
-        <div>
-            {{this.burger_name}}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-    {{/if}}
-    {{/each}}
+    <div class='col-sm-12 col-md-8 col-lg-5 table-burger'>
+        <div class="card-transparent">
+            <div class="card-body table-card">
+                <h3 class="card-title">Devoured Burgers!</h3>
+                <table class="table table-hover table-borderless">
+                    <tbody>
+                        {{!-- <ul> --}}
+                            {{!-- <h3>Devoured Burgers!</h3> --}}
+                            {{#each burger}}
+                            {{#if devoured}}
+                            {{> burger/burger-partials devour=false}}
+                            {{/if}}
+                            {{/each}}
+                            {{!-- </ul> --}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class='col-sm-12 col-md-3 col-lg-3 table-burger'>
+    </div>
 </div>
-</div>
-</div>
-</main>
 
-{{!-- new row for submit button --}}
-<h2>Add A Burger Option</h2>
-
-<div class="row">
-    <div class="col-md-12">
-        <form action="/burgers" method="POST">
-            <input type="text" id="name" name="burger_name" placeholder="Uber Delicious Burger">
-            <button type="submit" class="addBurgerButton">Add The Burger</button>
-        </form>
+<div class='row' id="add">
+    <div class='col-12' id="add-col">
+        <div class="form-group">
+            <h3>Order Burger</h3>
+            <label for="bur">Burger Name:</label>
+            <input type="text" id="bur" name="name">
+            <button class='add-btn btn-warning' id="order-btn">ORDER BURGER</button>
+        </div>
     </div>
 </div>
