@@ -2,8 +2,8 @@ body{
     background: pink;
     background-attachment: fixed;
     background-size: cover;
-    font-family: 'Arial', sans-serif;
-    color: rgb(8, 109, 8);
+    font-family: 'Raleway', sans-serif !important;
+    color: black;
 }
 #heading{
     margin:30px auto;
@@ -11,6 +11,7 @@ body{
 }
 #heading-col{
     padding: 0px;
+    font-weight: bold;
 }
 .table-card{
     padding: 0px;

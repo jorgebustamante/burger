@@ -2,19 +2,14 @@
     <div class='col-sm-12 col-md-8 col-lg-6 table-burger'>
         <div class="card-transparent">
             <div class="card-body table-card">
-                <h3 class="card-title">Ready to eat da burgers?</h3>
+                <h3 class="card-title">Tasks to-do</h3>
                 <table class="table table-hover table-borderless">
                     <tbody>
-
-                        {{!-- <ul> --}}
-                            {{!-- <h3>Ready to eat da burgers?</h3> --}}
                             {{#each burger}}
                             {{#unless devoured}}
                             {{>burger/burger-partials devour = true}}
                             {{/unless}}
                             {{/each}}
-                            {{!-- </ul> --}}
-
                     </tbody>
                 </table>
             </div>
@@ -23,17 +18,14 @@
     <div class='col-sm-12 col-md-8 col-lg-5 table-burger'>
         <div class="card-transparent">
             <div class="card-body table-card">
-                <h3 class="card-title">Devoured Burgers!</h3>
+                <h3 class="card-title">Tasks Completed</h3>
                 <table class="table table-hover table-borderless">
                     <tbody>
-                        {{!-- <ul> --}}
-                            {{!-- <h3>Devoured Burgers!</h3> --}}
                             {{#each burger}}
                             {{#if devoured}}
                             {{> burger/burger-partials devour=false}}
                             {{/if}}
                             {{/each}}
-                            {{!-- </ul> --}}
                     </tbody>
                 </table>
             </div>
@@ -46,10 +38,10 @@
 <div class='row' id="add">
     <div class='col-12' id="add-col">
         <div class="form-group">
-            <h3>Order Burger</h3>
-            <label for="bur">Burger Name:</label>
+            <h3>Enter New Task</h3>
+            <label for="bur">Task:</label>
             <input type="text" id="bur" name="name">
-            <button class='add-btn btn-warning' id="order-btn">ORDER BURGER</button>
+            <button class='add-btn btn-primary' id="order-btn">Add new task</button>
         </div>
     </div>
 </div>
